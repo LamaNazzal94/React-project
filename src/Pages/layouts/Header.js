@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
   return (
@@ -36,20 +36,20 @@ function Header() {
         </div>
         <nav className="mainmenu mobile-menu">
           <ul>
-            <li className="active"><Link to="/">Home</Link></li>
-            <li><Link to="/rooms">Rooms</Link></li>
-            <li><Link to="/about-us">About Us</Link></li>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/rooms">Rooms</NavLink></li>
+            <li><NavLink to="/about-us">About Us</NavLink></li>
             <li>
-              <Link to="/pages">Pages</Link>
+              <NavLink to="/pages">Pages</NavLink>
               <ul className="dropdown">
-                <li><Link to="/room-details">Room Details</Link></li>
-                <li><Link to="#">Deluxe Room</Link></li>
-                <li><Link to="#">Family Room</Link></li>
-                <li><Link to="#">Premium Room</Link></li>
+                <li><NavLink to="/room-details">Room Details</NavLink></li>
+                <li><NavLink to="#">Deluxe Room</NavLink></li>
+                <li><NavLink to="#">Family Room</NavLink></li>
+                <li><NavLink to="#">Premium Room</NavLink></li>
               </ul>
             </li>
-            {/* <li><Link to="/blog">News</Link></li> */}
-            <li><Link to="/contact">Contact</Link></li>
+            {/* <li><NavLink to="/blog">News</NavLink></li> */}
+            <li><NavLink to="/contact">Contact</NavLink></li>
           </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -106,29 +106,29 @@ function Header() {
             <div className="row">
               <div className="col-lg-2">
                 <div className="logo">
-                  <Link to="/">
+                  <NavLink to="/">
                     <img src="img/logo.png" alt="" />
-                  </Link>
+                  </NavLink>
                 </div>
               </div>
               <div className="col-lg-10">
                 <div className="nav-menu">
                   <nav className="mainmenu">
                     <ul>
-                      <li className="active"><Link to="/">Home</Link></li>
-                      <li><Link to="/rooms">Rooms</Link></li>
-                      <li><Link to="/about">About Us</Link></li>
+                      <li className="active"><NavLink to="/">Home</NavLink></li>
+                      <li><NavLink to="/rooms">Rooms</NavLink></li>
+                      <li><NavLink to="/about">About Us</NavLink></li>
                       <li>
-                        <Link to="/pages">Pages</Link>
+                        <NavLink to="/pages">Pages</NavLink>
                         <ul className="dropdown">
-                          <li><Link to="/room-details">Room Details</Link></li>
-                          {/* <li><Link to="/blog-details">Blog Details</Link></li> */}
-                          <li><Link to="#">Family Room</Link></li>
-                          <li><Link to="#">Premium Room</Link></li>
+                          <li><NavLink to="/room-details/:id">Room Details</NavLink></li>
+                          {/* <li><NavLink to="/blog-details">Blog Details</NavLink></li> */}
+                          <li><NavLink to="#">Family Room</NavLink></li>
+                          <li><NavLink to="#">Premium Room</NavLink></li>
                         </ul>
                       </li>
-                      {/* <li><Link to="/blog">News</Link></li> */}
-                      <li><Link to="/contact">Contact</Link></li>
+                      {/* <li><NavLink to="/blog">News</NavLink></li> */}
+                      <li><NavLink to="/contact">Contact</NavLink></li>
                     </ul>
                   </nav>
                   <div className="nav-right search-switch">
