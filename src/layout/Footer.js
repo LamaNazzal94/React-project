@@ -1,107 +1,74 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 
 function Footer() {
-  useEffect(() => {
-    // Load JavaScript libraries and scripts
-    const scriptsToLoad = [
-      'https://code.jquery.com/jquery-3.4.1.min.js',
-      'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js',
-      'lib/wow/wow.min.js',
-      'lib/easing/easing.min.js',
-      'lib/waypoints/waypoints.min.js',
-      'lib/counterup/counterup.min.js',
-      'lib/owlcarousel/owl.carousel.min.js',
-      'lib/tempusdominus/js/moment.min.js',
-      'lib/tempusdominus/js/moment-timezone.min.js',
-      'lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js',
-      'js/main.js',
-    ];
-
-    scriptsToLoad.forEach((scriptSrc) => {
-      const script = document.createElement('script');
-      script.src = scriptSrc;
-      script.async = true;
-      document.body.appendChild(script);
-    });
-
-    return () => {
-      // Cleanup: Remove added scripts when the component unmounts
-      scriptsToLoad.forEach((scriptSrc) => {
-        const script = document.createElement('script');
-        script.src = scriptSrc;
-        document.body.removeChild(script);
-      });
-    };
-  }, []);
-
   return (
-    <div className="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
-            <div className="container pb-5">
-                <div className="row g-5">
-                    <div className="col-md-6 col-lg-4">
-                        <div className="bg-primary rounded p-4">
-                            <a to="index.html"><h1 className="text-white text-uppercase mb-3">Hotelier</h1></a>
-                            <p className="text-white mb-0">
-								Download <a className="text-dark fw-medium" to="https://htmlcodex.com/hotel-html-template-pro">Hotelier – Premium Version</a>, build a professional website for your hotel business and grab the attention of new visitors upon your site’s launch.
-							</p>
-                        </div>
-                    </div>
-                    <div className="col-md-6 col-lg-3">
-                        <h6 className="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
-                        <p className="mb-2"><i className="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p className="mb-2"><i className="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p className="mb-2"><i className="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div className="d-flex pt-2">
-                            <a className="btn btn-outline-light btn-social" to=""><i className="fab fa-twitter"></i></a>
-                            <a className="btn btn-outline-light btn-social" to=""><i className="fab fa-facebook-f"></i></a>
-                            <a className="btn btn-outline-light btn-social" to=""><i className="fab fa-youtube"></i></a>
-                            <a className="btn btn-outline-light btn-social" to=""><i className="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div className="col-lg-5 col-md-12">
-                        <div className="row gy-5 g-4">
-                            <div className="col-md-6">
-                                <h6 className="section-title text-start text-primary text-uppercase mb-4">Company</h6>
-                                <a className="btn btn-link" to="">About Us</a>
-                                <a className="btn btn-link" to="">Contact Us</a>
-                                <a className="btn btn-link" to="">Privacy Policy</a>
-                                <a className="btn btn-link" to="">Terms & Condition</a>
-                                <a className="btn btn-link" to="">Support</a>
-                            </div>
-                            <div className="col-md-6">
-                                <h6 className="section-title text-start text-primary text-uppercase mb-4">Services</h6>
-                                <a className="btn btn-link" to="">Food & Restaurant</a>
-                                <a className="btn btn-link" to="">Spa & Fitness</a>
-                                <a className="btn btn-link" to="">Sports & Gaming</a>
-                                <a className="btn btn-link" to="">Event & Party</a>
-                                <a className="btn btn-link" to="">GYM & Yoga</a>
-                            </div>
-                        </div>
-                    </div>
+    <footer className="footer-section">
+      <div className="container">
+        <div className="footer-text">
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="ft-about">
+                <div className="logo">
+                  <a href="#">
+                    <img src="asset/img/footer-logo.png" alt="" />
+                  </a>
                 </div>
-            </div>
-            <div className="container">
-                <div className="copyright">
-                    <div className="row">
-                        <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a className="border-bottom" to="#">Your Site Name</a>, All Right Reserved. 
-							
-							Designed By <a className="border-bottom" to="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                        <div className="col-md-6 text-center text-md-end">
-                            <div className="footer-menu">
-                                <a to="">Home</a>
-                                <a to="">Cookies</a>
-                                <a to="">Help</a>
-                                <a to="">FQAs</a>
-                            </div>
-                        </div>
-                    </div>
+                <p>We inspire and reach millions of travelers across 90 local websites</p>
+                <div className="fa-social">
+                  <a href="#"><i className="fa fa-facebook"></i></a>
+                  <a href="#"><i className="fa fa-twitter"></i></a>
+                  <a href="#"><i className="fa fa-tripadvisor"></i></a>
+                  <a href="#"><i className="fa fa-instagram"></i></a>
+                  <a href="#"><i className="fa fa-youtube-play"></i></a>
                 </div>
+              </div>
             </div>
+            <div className="col-lg-3 offset-lg-1">
+              <div className="ft-contact">
+                <h6>Contact Us</h6>
+                <ul>
+                  <li>(12) 345 67890</li>
+                  <li>info.colorlib@gmail.com</li>
+                  <li>856 Cordia Extension Apt. 356, Lake, United State</li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-lg-3 offset-lg-1">
+              <div className="ft-newsletter">
+                <h6>New latest</h6>
+                <p>Get the latest updates and offers.</p>
+                <form action="#" className="fn-form">
+                  <input type="text" placeholder="Email" />
+                  <button type="submit"><i className="fa fa-send"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-   
+      </div>
+      <div className="copyright-option">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-7">
+              <ul>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Terms of use</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Environmental Policy</a></li>
+              </ul>
+            </div>
+            <div className="col-lg-5">
+              <div className="co-text">
+                <p>
+                  Copyright &copy;
+                  <script>document.write(new Date().getFullYear());</script> All rights reserved | This web is made with <i className="fa fa-heart" aria-hidden="true"></i> by <a href="https://github.com/SaraAbabneh" target="_blank">Sara Ababneh</a>&&<a href="https://github.com/SaraAbabneh" target="_blank">Lama</a><a href="https://github.com/SaraAbabneh" target="_blank">Ahmed</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
 

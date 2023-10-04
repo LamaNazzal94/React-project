@@ -8,11 +8,6 @@ function Layout() {
       <Head />
       <Header />
 
-
-
-
-
-      
     </div>
   );
 }

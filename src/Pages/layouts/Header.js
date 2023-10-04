@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -26,36 +27,37 @@ function Header() {
             <span>EN <i className="fa fa-angle-down"></i></span>
             <div className="flag-dropdown">
               <ul>
-                <li><a to="#">Zi</a></li>
-                <li><a to="#">Fr</a></li>
+                <li><a href="#">Zi</a></li>
+                <li><a href="#">Fr</a></li>
               </ul>
             </div>
           </div>
-          <a to="#" className="bk-btn">Booking Now</a>
+          <a href="#" className="bk-btn">Booking Now</a>
         </div>
         <nav className="mainmenu mobile-menu">
           <ul>
-            <li className="active"><a to="./index.html">Home</a></li>
-            <li><a to="./rooms.html">Rooms</a></li>
-            <li><a to="./about-us.html">About Us</a></li>
-            <li><a to="./pages.html">Pages</a>
+            <li className="active"><Link to="/">Home</Link></li>
+            <li><Link to="/rooms">Rooms</Link></li>
+            <li><Link to="/about-us">About Us</Link></li>
+            <li>
+              <Link to="/pages">Pages</Link>
               <ul className="dropdown">
-                <li><a to="./room-details.html">Room Details</a></li>
-                <li><a to="#">Deluxe Room</a></li>
-                <li><a to="#">Family Room</a></li>
-                <li><a to="#">Premium Room</a></li>
+                <li><Link to="/room-details">Room Details</Link></li>
+                <li><Link to="#">Deluxe Room</Link></li>
+                <li><Link to="#">Family Room</Link></li>
+                <li><Link to="#">Premium Room</Link></li>
               </ul>
             </li>
-            <li><a to="./blog.html">News</a></li>
-            <li><a to="./contact.html">Contact</a></li>
+            {/* <li><Link to="/blog">News</Link></li> */}
+            <li><Link to="/contact">Contact</Link></li>
           </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div className="top-social">
-          <a to="#"><i className="fa fa-facebook"></i></a>
-          <a to="#"><i className="fa fa-twitter"></i></a>
-          <a to="#"><i className="fa fa-tripadvisor"></i></a>
-          <a to="#"><i className="fa fa-instagram"></i></a>
+          <a href="#"><i className="fa fa-facebook"></i></a>
+          <a href="#"><i className="fa fa-twitter"></i></a>
+          <a href="#"><i className="fa fa-tripadvisor"></i></a>
+          <a href="#"><i className="fa fa-instagram"></i></a>
         </div>
         <ul className="top-widget">
           <li><i className="fa fa-phone"></i> (12) 345 67890</li>
@@ -78,19 +80,19 @@ function Header() {
               <div className="col-lg-6">
                 <div className="tn-right">
                   <div className="top-social">
-                    <a to="#"><i className="fa fa-facebook"></i></a>
-                    <a to="#"><i className="fa fa-twitter"></i></a>
-                    <a to="#"><i className="fa fa-tripadvisor"></i></a>
-                    <a to="#"><i className="fa fa-instagram"></i></a>
+                    <a href="#"><i className="fa fa-facebook"></i></a>
+                    <a href="#"><i className="fa fa-twitter"></i></a>
+                    <a href="#"><i className="fa fa-tripadvisor"></i></a>
+                    <a href="#"><i className="fa fa-instagram"></i></a>
                   </div>
-                  <a to="#" className="bk-btn">Booking Now</a>
+                  <a href="#" className="bk-btn">Booking Now</a>
                   <div className="language-option">
                     <img src="img/flag.jpg" alt="" />
                     <span>EN <i className="fa fa-angle-down"></i></span>
                     <div className="flag-dropdown">
                       <ul>
-                        <li><a to="#">Zi</a></li>
-                        <li><a to="#">Fr</a></li>
+                        <li><a href="#">Zi</a></li>
+                        <li><a href="#">Fr</a></li>
                       </ul>
                     </div>
                   </div>
@@ -104,30 +106,30 @@ function Header() {
             <div className="row">
               <div className="col-lg-2">
                 <div className="logo">
-                  <a to="./index.html">
+                  <Link to="/">
                     <img src="img/logo.png" alt="" />
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-lg-10">
                 <div className="nav-menu">
                   <nav className="mainmenu">
                     <ul>
-                      <li className="active"><a to="./index.html">Home</a></li>
-                      <li><a to="./rooms.html">Rooms</a></li>
-                      <li><a to="./about-us.html">About Us</a></li>
-                      <li><a to="./pages.html">Pages</a>
+                      <li className="active"><Link to="/">Home</Link></li>
+                      <li><Link to="/rooms">Rooms</Link></li>
+                      <li><Link to="/about">About Us</Link></li>
+                      <li>
+                        <Link to="/pages">Pages</Link>
                         <ul className="dropdown">
-                          <li><a to="./room-details.html">Room Details</a></li>
-                          <li><a to="./blog-details.html">Blog Details</a></li>
-                          <li><a to="#">Family Room</a></li>
-                          <li><a to="#">Premium Room</a></li>
+                          <li><Link to="/room-details">Room Details</Link></li>
+                          {/* <li><Link to="/blog-details">Blog Details</Link></li> */}
+                          <li><Link to="#">Family Room</Link></li>
+                          <li><Link to="#">Premium Room</Link></li>
                         </ul>
                       </li>
-                      <li><a to="./blog.html">News</a></li>
-                      <li><a to="./contact.html">Contact</a></li>
-                    </
-                    ul>
+                      {/* <li><Link to="/blog">News</Link></li> */}
+                      <li><Link to="/contact">Contact</Link></li>
+                    </ul>
                   </nav>
                   <div className="nav-right search-switch">
                     <i className="icon_search"></i>
