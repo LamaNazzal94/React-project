@@ -2,11 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate,NavLink } from 'react-router-dom'; // Import Navigate
 import Layout from "./layout/layout";
 import Footer from "./layout/Footer";
+import "./App.css";
+// import "./test";
 import About_us from "./Pages/about-us/About_us";
 import Contact from "./Pages/contact/Contact";
 import Room_details from "./Pages/room-details/Room_details";
 import Rooms from "./Pages/rooms/Rooms";
 import Index_component from "./Pages/index/index_component";
+
 
 function App() {
   return (

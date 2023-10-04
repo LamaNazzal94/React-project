@@ -1,13 +1,13 @@
 // Routes.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from "./layout/Layout";
+import Layout from "./layout/layoutayout";
 import Footer from "./layout/Footer";
 import About_us from "./Pages/about-us/About_us";
 import Contact from "./Pages/contact/Contact";
 import Room_details from "./Pages/room-details/Room_details";
 import Rooms from "./Pages/rooms/Rooms";
-import index_component from "./Pages/index/Index_component";
+import index_component from "./Pages/index/index_component";
 
 function AppRoutes() {
   return (
