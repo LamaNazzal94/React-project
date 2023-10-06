@@ -6,7 +6,7 @@ import {
   Navigate,
   NavLink,
 } from "react-router-dom"; // Import Navigate
-import Layout from "./layout/Layout";
+import Layout from "./layout/layout";
 import Footer from "./layout/Footer";
 import "./App.css";
 // import "./test";
