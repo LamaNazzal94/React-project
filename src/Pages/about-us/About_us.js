@@ -14,7 +14,6 @@ function AboutUs() {
                 <h2>About Us</h2>
                 <div className="bt-option">
                   <Link to="/" className="primary-btn">Home</Link>
-
                   <span>About Us</span>
                 </div>
               </div>

@@ -1,28 +1,17 @@
-import React, { Component, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-// const islogin = localStorage.getItem("islogin");
+import React, { useState } from "react";
+
+import { Link, useLocation } from "react-router-dom";
 
 function Header() {
-  const [Ahmad, setahmad] = useState(localStorage.getItem("islogin"));
-  const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
-
-
+  const [check, setCheck] = useState(localStorage.getItem("islogin"));
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const handleLogout = () => {
-    setahmad("false");
-    const islogout=localStorage.setItem("islogin", 'false');
-
+    setCheck("false");
+    localStorage.setItem("islogin", "false");
   };
 
-  useEffect(() => {
-    setahmad(localStorage.getItem("islogin"));
-    // console.log(islogin);
-    
-
-  }, []);
-
-
- 
   return (
     <div>
       {/* Page Preloder */}
@@ -101,7 +90,7 @@ function Header() {
                     Booking Now
                   </a>
                   <div className="language-option">
-                    <img src="img/flag.jpg" alt="" />
+                    <img src="asset/img/flag.jpg" alt="" />
                     <span>
                       EN <i className="fa fa-angle-down"></i>
                     </span>
@@ -136,53 +125,58 @@ function Header() {
                 <div className="nav-menu">
                   <nav className="mainmenu">
                     <ul>
-                      <li className="active">
+                      <li className={currentPath === "/" ? "active" : ""}>
                         <Link to="/">Home</Link>
                       </li>
-                      <li>
+                      <li className={currentPath === "/rooms" ? "active" : ""}>
                         <Link to="/rooms">Rooms</Link>
                       </li>
-                      <li>
+                      <li className={currentPath === "/about" ? "active" : ""}>
                         <Link to="/about">About Us</Link>
                       </li>
-                      <li>
+                      <li
+                        className={
+                          currentPath.startsWith("/pages") ? "active" : ""
+                        }
+                      >
                         <Link to="/pages">Pages</Link>
                         <ul className="dropdown">
-                          <li>
+                          <li
+                            className={
+                              currentPath === "/room-details" ? "active" : ""
+                            }
+                          >
                             <Link to="/room-details">Room Details</Link>
                           </li>
                           {/* Add more dropdown items as needed */}
                         </ul>
                       </li>
-                      <li>
+                      <li
+                        className={currentPath === "/contact" ? "active" : ""}
+                      >
                         <Link to="/contact">Contact</Link>
                       </li>
-                      {/* <li> */}
-                      
-                      {Ahmad ==null || Ahmad == "false"?
-                       (
-                       
-                        <>
-                        
-                          <li>
+                      <li>
+                        {check == null || check === "false" ? (
+                          <>
                             <Link to="/CrudApp">
+                              <button className="btn-warning">LogIn</button>
+                            </Link>
+                          </>
+                        ) : (
+                          <>
+                            <Link to="/Profile">
                               <i className="fa fa-user"></i>
                             </Link>
-                          </li>
-                        </>
-                      ) : (
-                        <>
-                          <li>
                             <button
                               className="btn-warning"
                               onClick={handleLogout}
                             >
                               Logout
                             </button>
-                          </li>
-                        </>
-                      )}
-                      {/* )} */}
+                          </>
+                        )}
+                      </li>
                     </ul>
                   </nav>
                   <div className="nav-right search-switch">

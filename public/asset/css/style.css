@@ -1004,8 +1004,7 @@ ul, ol {
 .breadcrumb-text .bt-option a:after {
 	position: absolute;
 	right: -13px;
-	top: 1px;
-	content: "";
+	top: 24px;
 	font-size: 18px;
 	font-family: "FontAwesome";
 	color: #aaaab3;
