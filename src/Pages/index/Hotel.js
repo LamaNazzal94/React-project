@@ -41,7 +41,7 @@ function Hotel() {
                         </tr>
                       </tbody>
                     </table>
-                    <Link to={`/room-details/${Hotel.id}`} className="primary-btn">
+                    <Link to={`/rooms/${Hotel.id}`} className="primary-btn">
                       More Details
                     </Link>
                   </div>

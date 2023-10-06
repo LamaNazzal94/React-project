@@ -1,15 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Routes correctly
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+  NavLink,
+} from "react-router-dom"; // Import Navigate
 import Layout from "./layout/Layout";
 import Footer from "./layout/Footer";
-import AboutUs from "./Pages/about-us/About_us"; // Update component name
+import "./App.css";
+// import "./test";
+import About_us from "./Pages/about-us/About_us";
 import Contact from "./Pages/contact/Contact";
 import RoomDetails from "./Pages/room-details/Room_details"; // Update component name
 import Rooms from "./Pages/rooms/Rooms";
-import IndexComponent from "./Pages/index/index_component"; // Update component name
-import CrudApp from "./CrudApp";
-import './login';
-import './login.css';
+import Index_component from "./Pages/index/index_component";
 
 function App() {
   return (
@@ -17,12 +22,16 @@ function App() {
       <div>
         <Layout /> {/* Layout outside Routes */}
         <Routes>
-          <Route path="/" element={<IndexComponent />} />
-          <Route path="about" element={<AboutUs />} />
+          <Route index element={<Index_component />} />
+          <Route path="about" element={<About_us />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="room-details" element={<RoomDetails />} />
+          <Route
+            path="rooms/:Hotelid/room-details/:hotelid/:id"
+            element={<RoomDetails />}
+          />
           <Route path="rooms/:Hotelid" element={<Rooms />} />
-          <Route path="CrudApp" element={<CrudApp />} />
+          {/* Add a catch-all route for unmatched paths */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
       </div>
