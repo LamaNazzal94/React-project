@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-  a{
+  a {
     text-decoration: none !important;
   }
+
   /* .not-available{
     background-color: black;
   } */
-  .notav{
+  .notav {
     color: red !important;
-    margin:  0 !important;
+    margin: 0 !important;
   }
-  .nigar{
+
+  .nigar {
     background-color: lightgray;
   }
 </style>
@@ -31,7 +33,7 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Css Styles -->
   <link rel="stylesheet" href="asset/css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="asset/css/font-awesome.min.css" type="text/css">
@@ -43,7 +45,7 @@
   <link rel="stylesheet" href="asset/css/magnific-popup.css" type="text/css">
   <link rel="stylesheet" href="asset/css/slicknav.min.css" type="text/css">
   <link rel="stylesheet" href="asset/css/style.css" type="text/css">
-  
+
   <!--  
 
 
@@ -91,42 +93,47 @@
   <script src="asset/js/jquery.nice-select.min.js"></script>
   <script src="asset/js/jquery-ui.min.js"></script>
   <script src="asset/js/jquery.slicknav.js"></script>
-  <script src="asset/js/owl.carousel.min.js"></script>
   <script src="asset/js/main.js"></script>
+  <script src="/src/Pages/SliderJScript.js"></script>
+  <script src="path/to/jquery.min.js"></script>
+<script src="asset/js/owl.carousel.min.js"></script>
 
   <!-- login -->
 
-  
-<script src="login"></script>
-<!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<!-- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> make error  -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+  <script src="login"></script>
+  <!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!-- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> make error  -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
   <!-- login -->
   <script>
     $(document).ready(function () {
+      // Initialize the testimonial-slider
       $(".testimonial-slider").owlCarousel({
         items: 1,
         loop: true,
         autoplay: true,
+        autoplayTimeout: 5000, // Adjust this value to set the time between slides (in milliseconds)
+        nav: true,
+        dots: false,
+        navText: ["<i class='icon_arrow-left'></i>", "<i class='icon_arrow-right'></i>"]
+      });
+
+      // Initialize the hero-slider
+      $(".hero-slider").owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000, // Adjust this value to set the time between slides (in milliseconds)
         nav: true,
         dots: false,
         navText: ["<i class='icon_arrow-left'></i>", "<i class='icon_arrow-right'></i>"]
       });
     });
 
-    $(document).ready(function () {
-      $(".hero-slider").owlCarousel({
-        items: 1,
-        loop: true,
-        autoplay: true,
-        nav: true,
-        dots: false,
-        navText: ["<i class='icon_arrow-left'></i>", "<i class='icon_arrow-right'></i>"]
-      });
-    });
 
   </script>
 
