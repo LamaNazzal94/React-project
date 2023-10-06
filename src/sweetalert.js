@@ -1,7 +1,7 @@
 import React from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import Login from "./Pages/rooms/Rooms"
+// import Login from "./Pages/rooms/Rooms"
 
 const MySweetAlertComponent = () => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const MySweetAlertComponent = () => {
       .fire({
         title: "Please Login First ",
         text: "You won't be able to revert this!",
-        icon: "warning",
+        icon: "warning 🧙‍♀️",
         showCancelButton: true,
         confirmButtonText: "Login",
         cancelButtonText: "No, cancel!",
@@ -26,14 +26,11 @@ const MySweetAlertComponent = () => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-            // window.location=("/")
-       navigate("/");
+          // window.location=("/")
+          navigate("/");
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-      
         }
-      }
-      
-      );
+      });
   };
 
   return (

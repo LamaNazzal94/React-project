@@ -5,6 +5,7 @@ import { Button, Checkbox, Form } from "semantic-ui-react";
 import Popup from "reactjs-popup";
 import Preloader from "../rooms/Preloader";
 import Swal from "sweetalert2";
+// import StripeContainer  from "../../payment/StripeContainer"
 
 import Sweetalert from '../../sweetalert'
 
@@ -14,15 +15,37 @@ import Sweetalert from '../../sweetalert'
     const [userid, setUserid] = useState(1);
     const [islogin, setlogin] = useState(true);
 const [isLoading, setIsLoading] = useState(true);
-
-    const { id, hotelid } = useParams();
+ const currentDate = new Date().toISOString().split("T")[0];
+ 
+    const { id, hotelid } = useParams();  
     const [roomid, setroomid] = useState(id);
     const [roomdetils, setRoomdetils] = useState([]);
     const [book, setBook] = useState([]);
+    const [user, setUser] = useState([]);
     const [checkIn, setcheckIn] = useState(null);
     const [checkOut, setcheckOut] = useState(null);
     const [warning, setwarning] = useState(null);
+    const [review, setReview] = useState([]);
     const [availability, setavailability] = useState(false);
+
+    useEffect(() => {
+      axios
+        .get("https://651d596844e393af2d599b52.mockapi.io/reviwe")
+        .then((response) => {
+          const filteredReview = response.data.filter(
+            (item) => item.single_id === parseInt(id)
+          );
+          setReview(filteredReview);
+
+        });
+    }, []);
+
+    useEffect(()=>{
+       axios.get("https://64c259d9eb7fd5d6ebcfae46.mockapi.io/user")
+        .then((response) => {
+setUser(response.data)
+        })
+    },[]);
     useEffect(() => {
       axios
         .get(
@@ -31,7 +54,6 @@ const [isLoading, setIsLoading] = useState(true);
         .then((response) => {
           setRoomdetils(response.data);
         setIsLoading(false);
-
         });
     }, []);
     const booking = () => {
@@ -60,6 +82,22 @@ Swal.fire(
           checkOut,
         });
         availabilityy();
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Signed in successfully",
+        });
       }
     };
     const availabilityy = () => {
@@ -91,7 +129,8 @@ Swal.fire(
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="breadcrumb-text">
-                      <h2>Our Rooms</h2>
+                      {/* {JSON.stringify(user[0].first_name, null, 2)} */}
+                      <h2>Our Rooms {review[0].id} </h2>
                       <div className="bt-option">
                         <Link to="/">Home</Link> {/* Use Link for Home */}
                         <a>Rooms</a>
@@ -164,46 +203,27 @@ Swal.fire(
                     </div>
                     <div className="rd-reviews">
                       <h4>Reviews</h4>
-                      <div className="review-item">
-                        <div className="ri-pic">
-                          <img
-                            src="/asset/img/room/avatar/avatar-1.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <div className="ri-text">
-                          <span>27 Aug 2019</span>
-                          <div className="rating">
-                            <i className="icon_star"></i>
-                            <i className="icon_star"></i>
-                            <i className="icon_star"></i>
-                            <i className="icon_star"></i>
-                            <i className="icon_star-half_alt"></i>
+                      {/* {JSON.stringify(review, null, 2)} */}
+                   
+                      {review.map((rev) => (
+                        <div key={rev} className="review-item">
+                          <div className="ri-pic">
+                            <img src={`${rev.image}`} alt="" />
                           </div>
-                          <h5>Brandon Kelley</h5>
-                          <p>{/* Add review text */}</p>
-                        </div>
-                      </div>
-                      <div className="review-item">
-                        <div className="ri-pic">
-                          <img
-                            src="/asset/img/room/avatar/avatar-2.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <div className="ri-text">
-                          <span>27 Aug 2019</span>
-                          <div className="rating">
-                            <i className="icon_star"></i>
-                            <i className="icon_star"></i>
-                            <i className="icon_star"></i>
-                            <i className="icon_star"></i>
-                            <i className="icon_star-half_alt"></i>
+                          <div className="ri-text">
+                            <span>27 Aug 2019</span>
+                            <div className="rating">
+                              <i className="icon_star"></i>
+                              <i className="icon_star"></i>
+                              <i className="icon_star"></i>
+                              <i className="icon_star"></i>
+                              <i className="icon_star-half_alt"></i>
+                            </div>
+                            <h5>{user[rev.user_id].first_name}</h5>
+                            <p>{/* Add review text */}</p>
                           </div>
-                          <h5>Brandon Kelley</h5>
-                          <p>{/* Add review text */}</p>
                         </div>
-                      </div>
+                      ))}
                     </div>
                     <div className="review-add">
                       <h4>Add Review</h4>
@@ -248,6 +268,7 @@ Swal.fire(
                               onChange={(e) => {
                                 setcheckIn(e.target.value);
                               }}
+                              min={currentDate}
                             />
                             {/* <i className="icon_calendar"></i> */}
                           </div>
@@ -262,7 +283,9 @@ Swal.fire(
                               onChange={(e) => {
                                 setcheckOut(e.target.value);
                               }}
+                              min={currentDate + checkOut}
                             />
+                            {/* <StripeContainer /> */}
                             <i className="icon_calendar"></i>
                           </div>
                         </Form.Field>
