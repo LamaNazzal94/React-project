@@ -396,70 +396,66 @@ function RoomDetails() {
               </div>
             </div>
           </section>
-          <div>
-            <ul class="row RoomDetailsList-list">
-              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
-                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
-                  <div className="RoomDetailsList-item-details">
-                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
-                    <p className="RoomDetailsList-item-copy ty-c2">
-                      King or two twin beds, One rollaway or one crib
-                    </p>
+
+
+          <section className="services-section">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="section-title">
+                    <span>{roomdetils.room_name}</span>
+                    <h2>Additional Services</h2>
                   </div>
                 </div>
-              </li>
-              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
-                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
-                  <div className="RoomDetailsList-item-details">
-                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
-                    <p className="RoomDetailsList-item-copy ty-c2">
-                      King or two twin beds, One rollaway or one crib
-                    </p>
+              </div>
+              <div className="row">
+                <div className="col-lg-4 col-sm-6">
+                  <div className="service-item">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2946/2946876.png" className="w-80px" alt="" />
+                    <h4>Entertainment</h4>
+                    <p>{roomdetils.entertainment}</p>
                   </div>
                 </div>
-              </li>
-              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
-                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
-                  <div className="RoomDetailsList-item-details">
-                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
-                    <p className="RoomDetailsList-item-copy ty-c2">
-                      King or two twin beds, One rollaway or one crib
-                    </p>
+                <div className="col-lg-4 col-sm-6">
+                  <div className="service-item">
+                    <img src="https://cdn-icons-png.flaticon.com/128/1668/1668914.png" className="w-80px" alt="" />
+                    <h4>Bedding & Linens</h4>
+                    <p>{roomdetils.Bedding_and_Linens}</p>
                   </div>
                 </div>
-              </li>
-              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
-                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
-                  <div className="RoomDetailsList-item-details">
-                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
-                    <p className="RoomDetailsList-item-copy ty-c2">
-                      King or two twin beds, One rollaway or one crib
-                    </p>
+                <div className="col-lg-4 col-sm-6">
+                  <div className="service-item">
+                    <img src="https://cdn-icons-png.flaticon.com/128/3951/3951087.png" className="w-80px" alt="" />
+                    <h4>Housekeeping Services</h4>
+                    <p>{roomdetils.Housekeeping_Services}</p>
                   </div>
                 </div>
-              </li>
-              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
-                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
-                  <div className="RoomDetailsList-item-details">
-                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
-                    <p className="RoomDetailsList-item-copy ty-c2">
-                      King or two twin beds, One rollaway or one crib
-                    </p>
+                <div className="col-lg-4 col-sm-6">
+                  <div className="service-item">
+                    <img src="https://cdn-icons-png.flaticon.com/128/857/857681.png" className="w-80px" alt="" />
+                    <h4>Food & Cuisine</h4>
+                    <p>{roomdetils.Food_and_Cuisine}</p>
                   </div>
                 </div>
-              </li>
-              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
-                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
-                  <div className="RoomDetailsList-item-details">
-                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
-                    <p className="RoomDetailsList-item-copy ty-c2">
-                      King or two twin beds, One rollaway or one crib
-                    </p>
+                <div className="col-lg-4 col-sm-6">
+                  <div className="service-item">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2684/2684197.png" className="w-80px" alt="" />
+                    <h4>Hire Driver</h4>
+                    <p>{roomdetils.Hire_Driver}</p>
                   </div>
                 </div>
-              </li>
-            </ul>
-          </div>
+                <div className="col-lg-4 col-sm-6">
+                  <div className="service-item">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2738/2738890.png" className="w-80px" alt="" />
+                    <h4>Juice & Drink</h4>
+                    <p>{roomdetils.Juice_and_Drink}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
           {/* Room Details Section End */}
         </div>
       )}
