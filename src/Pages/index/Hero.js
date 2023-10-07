@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 
 function Hero() {
-    const { t, i18n } = useTranslation();
+const { t, i18n } = useTranslation();
 
   const { hotelid, id } = useParams(); // Use useParams to get hotelid and id
   const [checkIn, setCheckIn] = useState(null);
@@ -115,21 +115,19 @@ function Hero() {
             <div className="col-lg-6">
               <div className="hero-text">
                 <h1>Sona A Luxury Hotel</h1>
-                <p>
-                  Here are the best hotel booking sites, including
-                  recommendations for international travel and for finding
-                  low-priced hotel rooms.
-                </p>
-                <Link to="/about" className="primary-btn">Discover Now</Link>
+                <p>{t("sliderdes")}</p>
+                <Link to="/about" className="primary-btn">
+                  {t("des")}
+                </Link>
               </div>
             </div>
             <div className="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
               <div className="booking-form">
-                <h3>Booking Your Hotel</h3>
+                <h3>{t("book")}</h3>
                 <Form className="create-form">
                   <Form.Field>
                     <div className="check-date">
-                      <label htmlFor="date-in">Check In:</label>
+                      <label htmlFor="date-in">{t("checkin")}:</label>
                       <input
                         type="date"
                         className="date-input"
@@ -145,7 +143,7 @@ function Hero() {
                   </Form.Field>
                   <Form.Field>
                     <div className="check-date">
-                      <label htmlFor="date-out">Check Out:</label>
+                      <label htmlFor="date-out">{t("checkout")}:</label>
                       <input
                         type="date"
                         className="date-input"
@@ -161,7 +159,7 @@ function Hero() {
                   </Form.Field>
                 </Form>
                 <Button className="btn-cust" onClick={booking}>
-                  Check Availability
+                  {t("checkava")}
                 </Button>
 
                 {availability ? (
