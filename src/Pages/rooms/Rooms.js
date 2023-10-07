@@ -5,20 +5,34 @@ import Preloader from "./Preloader";
 
 function Rooms() {
   const [rooms, setRooms] = useState([]);
+  const [booking, setbooking] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6; // Number of items to display per page
   const { Hotelid } = useParams();
 
 
+useEffect(() => {
+  axios
+    .get(`https://651d606a44e393af2d59a7e0.mockapi.io/booking`)
+    .then((response) => {
+      setbooking(response.data);
+    });
+},[]);
+    // const { Hotelid} = useParams();
+
+// checkout[0].checkOut;
   useEffect(() => {
     axios
-      .get(`https://64bbac6a7b33a35a4446905c.mockapi.io/hotels/${Hotelid}/rooms`)
+      .get(
+        `https://64bbac6a7b33a35a4446905c.mockapi.io/hotels/${Hotelid}/rooms`
+      )
+
       .then((response) => {
         setRooms(response.data);
         setIsLoading(false);
       });
-  }, []);
+  }, [Hotelid]);
 
   // Calculate the range of items to display for the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -47,6 +61,7 @@ function Rooms() {
     <div>
       {isLoading ? (
         <Preloader />
+      
       ) : (
         <div>
           <div className="breadcrumb-section">
@@ -114,7 +129,7 @@ function Rooms() {
                             More Details
                           </Link>
                         ) : (
-                          <p className="primary-btn notav ">Not Available</p>
+                          <p className="primary-btn notav ">Not Available to {room.checkOut} </p>
                         )}
                       </div>
                     </div>

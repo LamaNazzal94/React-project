@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"; // Import Link for routing
 import axios from "axios";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Checkbox, Form, FormField } from "semantic-ui-react";
 import Popup from "reactjs-popup";
 import Preloader from "../rooms/Preloader";
 import Swal from "sweetalert2";
+// import StripeContainer  from "../../payment/StripeContainer"
 
 import Sweetalert from "../../sweetalert";
 
@@ -13,15 +14,65 @@ function RoomDetails() {
   const [userid, setUserid] = useState(localStorage.getItem("userid"));
   const [islogin, setlogin] = useState(localStorage.getItem("islogin"));
   const [isLoading, setIsLoading] = useState(true);
+  const currentDate = new Date().toISOString().split("T")[0];
 
   const { id, hotelid } = useParams();
   const [roomid, setroomid] = useState(id);
   const [roomdetils, setRoomdetils] = useState([]);
   const [book, setBook] = useState([]);
+  const [user, setUser] = useState([]);
   const [checkIn, setcheckIn] = useState(null);
   const [checkOut, setcheckOut] = useState(null);
   const [warning, setwarning] = useState(null);
+  const [review, setReview] = useState([]);
   const [availability, setavailability] = useState(false);
+  const [reviewerName, setreviewerName] = useState("");
+  const [reviewText, setreviewText] = useState("");
+  const category_id = hotelid;
+  const [image, setuserimage] = useState("");
+  const [detils, setdetils] = useState([]);
+  const single_id = +id;
+  const date = currentDate;
+  const user_id = +localStorage.getItem("userid");
+
+  useEffect(() => {
+    setlogin(localStorage.getItem("islogin"));
+  });
+  useEffect(() => {
+    axios
+      .get("https://651d596844e393af2d599b52.mockapi.io/reviwe")
+      .then((response) => {
+        const filteredReview = response.data.filter(
+          (item) => item.single_id == id + 1
+        );
+        console.log(filteredReview[0]);
+        // JSON.stringify(item.single_id);
+
+        setReview(filteredReview);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://64c259d9eb7fd5d6ebcfae46.mockapi.io/user")
+      .then((response) => {
+        setUser(response.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://64c259d9eb7fd5d6ebcfae46.mockapi.io/user")
+      .then((response) => {
+        setdetils(
+          response.data.filter((e) => {
+            return e.id == userid;
+          })
+        );
+        setuserimage(detils.image);
+        //  setreviewerName(detils.first_name);
+      });
+  }, []);
   useEffect(() => {
     axios
       .get(
@@ -32,23 +83,44 @@ function RoomDetails() {
         setIsLoading(false);
       });
   }, []);
-  const booking = () => {
-    if (islogin == "false") {
+
+  let booking = () => {
+    if (islogin === "false") {
+      {
+        console.log(islogin);
+      }
     } else if (checkOut == null) {
       Swal.fire("Don't Forget!", "You Must Fill  CheckOut Field", "warning");
     } else if (checkIn == null) {
       Swal.fire("Don't Forget!", "You Must Fill  CheckIn Field", "warning");
     } else {
       axios.post(`https://651d606a44e393af2d59a7e0.mockapi.io/booking`, {
-        userid,
+        user_id,
         hotelid,
         checkIn,
         roomid,
         checkOut,
       });
       availabilityy();
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: "success",
+        title: "Signed in successfully",
+      });
     }
   };
+
   const availabilityy = () => {
     axios.put(
       `https://64bbac6a7b33a35a4446905c.mockapi.io/hotels/${hotelid}/rooms/${id}`,
@@ -58,6 +130,28 @@ function RoomDetails() {
     );
   };
 
+  const Addreview = () => {
+    if (reviewerName == "") {
+    } else if (reviewText == "") {
+    } else {
+      axios
+        .post(`https://651d596844e393af2d599b52.mockapi.io/reviwe`, {
+          reviewerName,
+          reviewText,
+          category_id,
+          single_id,
+          image,
+          date,
+          user_id,
+        })
+        .then((response) => {
+          // Reset the state variables to empty values
+          setreviewerName("");
+          setreviewText("");
+        });
+      Swal.fire("thank you for review", "success");
+    }
+  };
   const filledStars = Math.round(roomdetils.rating);
   const emptyStars = 5 - filledStars;
   const stars = Array.from({ length: filledStars }, (_, index) => (
@@ -78,6 +172,7 @@ function RoomDetails() {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="breadcrumb-text">
+                    {/* {JSON.stringify(user[0].first_name, null, 2)} */}
                     <h2>Our Rooms</h2>
                     <div className="bt-option">
                       <Link to="/">Home</Link> {/* Use Link for Home */}
@@ -110,13 +205,7 @@ function RoomDetails() {
                                 {emptyStar}
                               </span>
                             ))}
-                            {/* <i className="icon_star"></i>
-                          <i className="icon_star"></i>
-                          <i className="icon_star"></i>
-                          <i className="icon_star"></i>
-                          <i className="icon_star-half_alt"></i> */}
                           </div>
-                          {/* <a href="#">Booking Now</a> */}
                         </div>
                       </div>
                       <h2>
@@ -146,74 +235,101 @@ function RoomDetails() {
                       <p>{/* Add more room details */}</p>
                     </div>
                   </div>
+
                   <div className="rd-reviews">
                     <h4>Reviews</h4>
-                    <div className="review-item">
-                      <div className="ri-pic">
-                        <img src="/asset/img/room/avatar/avatar-1.jpg" alt="" />
-                      </div>
-                      <div className="ri-text">
-                        <span>27 Aug 2019</span>
-                        <div className="rating">
-                          <i className="icon_star"></i>
-                          <i className="icon_star"></i>
-                          <i className="icon_star"></i>
-                          <i className="icon_star"></i>
-                          <i className="icon_star-half_alt"></i>
+                    {/* {JSON.stringify(review, null, 2)} */}
+                    {console.log(review)}
+                    {review.map((rev) => (
+                      <div key={rev} className="review-item">
+                        <div className="ri-pic">
+                          <img src={`${rev.image}`} alt="" />
                         </div>
-                        <h5>Brandon Kelley</h5>
-                        <p>{/* Add review text */}</p>
-                      </div>
-                    </div>
-                    <div className="review-item">
-                      <div className="ri-pic">
-                        <img src="/asset/img/room/avatar/avatar-2.jpg" alt="" />
-                      </div>
-                      <div className="ri-text">
-                        <span>27 Aug 2019</span>
-                        <div className="rating">
-                          <i className="icon_star"></i>
-                          <i className="icon_star"></i>
-                          <i className="icon_star"></i>
-                          <i className="icon_star"></i>
-                          <i className="icon_star-half_alt"></i>
-                        </div>
-                        <h5>Brandon Kelley</h5>
-                        <p>{/* Add review text */}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="review-add">
-                    <h4>Add Review</h4>
-                    <form action="#" className="ra-form">
-                      <div className="row">
-                        <div className="col-lg-6">
-                          <input type="text" placeholder="Name*" />
-                        </div>
-                        <div className="col-lg-6">
-                          <input type="text" placeholder="Email*" />
-                        </div>
-                        <div className="col-lg-12">
-                          <div>
-                            <h5>Your Rating:</h5>
-                            <div className="rating">
-                              <i className="icon_star"></i>
-                              <i className="icon_star"></i>
-                              <i className="icon_star"></i>
-                              <i className="icon_star"></i>
-                              <i className="icon_star-half_alt"></i>
-                            </div>
+                        <div className="ri-text">
+                          <span>27 Aug 2019</span>
+                          <div className="rating">
+                            <i className="icon_star"></i>
+                            <i className="icon_star"></i>
+                            <i className="icon_star"></i>
+                            <i className="icon_star"></i>
+                            <i className="icon_star-half_alt"></i>
                           </div>
-                          <textarea placeholder="Your Review"></textarea>
-                          <button type="submit">Submit Now</button>
+                          <h5>{user[rev.user_id].first_name}</h5>
+                          <p>{/* Add review text */}</p>
                         </div>
                       </div>
-                    </form>
+                    ))}
                   </div>
+                  {console.log(islogin)}
+                  {islogin != "true" ? (
+                    <p> </p>
+                  ) : (
+                    <div className="review-add">
+                      <h4>Add Review</h4>
+                      <Form className="ra-form">
+                        <div className="row">
+                          <div className="col-lg-6">
+                            <Form.Field>
+                              <label htmlFor="room">Name</label>
+
+                              <input
+                                type="text"
+                                required
+                                placeholder="Name*"
+                                value={reviewerName}
+                                onChange={(e) => {
+                                  setreviewerName(e.target.value);
+                                }}
+                                reviewerName
+                              />
+                              {reviewerName !== "" ? (
+                                <span></span>
+                              ) : (
+                                <p>This filled required</p>
+                              )}
+                            </Form.Field>
+                          </div>
+
+                          <div className="col-lg-12">
+                            <div>
+                              <h5>Your Rating:</h5>
+                              <div className="rating">
+                                <i className="icon_star"></i>
+                                <i className="icon_star"></i>
+                                <i className="icon_star"></i>
+                                <i className="icon_star"></i>
+                                <i className="icon_star-half_alt"></i>
+                              </div>
+                            </div>
+                            <Form.Field>
+                              <textarea
+                                placeholder="Your Review"
+                                type="text"
+                                required
+                                onChange={(e) => {
+                                  setreviewText(e.target.value);
+                                }}
+                                value={reviewText}></textarea>
+                              {reviewText !== "" ? (
+                                <span></span>
+                              ) : (
+                                <p>This filled required</p>
+                              )}
+                              <button type="submit" onClick={Addreview}>
+                                Submit Now
+                              </button>
+                            </Form.Field>
+                          </div>
+                        </div>
+                      </Form>
+                    </div>
+                  )}
                 </div>
+
                 <div className="col-lg-4">
                   <div className="room-booking">
                     <h3>Your Reservation</h3>
+
                     <Form className="create-form">
                       <Form.Field>
                         <div className="check-date">
@@ -226,6 +342,7 @@ function RoomDetails() {
                             onChange={(e) => {
                               setcheckIn(e.target.value);
                             }}
+                            min={currentDate}
                           />
                           {/* <i className="icon_calendar"></i> */}
                         </div>
@@ -240,7 +357,9 @@ function RoomDetails() {
                             onChange={(e) => {
                               setcheckOut(e.target.value);
                             }}
+                            min={currentDate + checkOut}
                           />
+                          {/* <StripeContainer /> */}
                           <i className="icon_calendar"></i>
                         </div>
                       </Form.Field>
@@ -257,13 +376,14 @@ function RoomDetails() {
                           <p value="">1 Room</p>
                         </div>
                       </Form.Field>
-                      {islogin ? (
+                      {islogin == "true" ? (
                         <Button type="submit" onClick={booking}>
-                          {" "}
                           Booking Now
                         </Button>
                       ) : (
-                        <Sweetalert />
+                        <>
+                          <Sweetalert />
+                        </>
                       )}
                     </Form>
                   </div>
@@ -271,6 +391,70 @@ function RoomDetails() {
               </div>
             </div>
           </section>
+          <div>
+            <ul class="row RoomDetailsList-list">
+              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
+                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
+                  <div className="RoomDetailsList-item-details">
+                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
+                    <p className="RoomDetailsList-item-copy ty-c2">
+                      King or two twin beds, One rollaway or one crib
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
+                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
+                  <div className="RoomDetailsList-item-details">
+                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
+                    <p className="RoomDetailsList-item-copy ty-c2">
+                      King or two twin beds, One rollaway or one crib
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
+                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
+                  <div className="RoomDetailsList-item-details">
+                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
+                    <p className="RoomDetailsList-item-copy ty-c2">
+                      King or two twin beds, One rollaway or one crib
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
+                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
+                  <div className="RoomDetailsList-item-details">
+                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
+                    <p className="RoomDetailsList-item-copy ty-c2">
+                      King or two twin beds, One rollaway or one crib
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
+                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
+                  <div className="RoomDetailsList-item-details">
+                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
+                    <p className="RoomDetailsList-item-copy ty-c2">
+                      King or two twin beds, One rollaway or one crib
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li className="col-xl-4 col-md-6 RoomDetailsList-item">
+                <div className="RoomDetailsList-item-container RoomDetailsList-item-beds">
+                  <div className="RoomDetailsList-item-details">
+                    <h3 className="RoomDetailsList-item-title ty-c1">Beds</h3>
+                    <p className="RoomDetailsList-item-copy ty-c2">
+                      King or two twin beds, One rollaway or one crib
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
           {/* Room Details Section End */}
         </div>
       )}
