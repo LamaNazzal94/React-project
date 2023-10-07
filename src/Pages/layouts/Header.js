@@ -25,7 +25,7 @@ function Header() {
         <div className="header-configure-area">
           <div className="language-option">
             <img src="img/flag.jpg" alt="" />
-            <span>EN <i className="fa fa-angle-down"></i></span>
+            <span>EN<i className="fa fa-angle-down"></i></span>
             <div className="flag-dropdown">
               <ul>
                 <li><a href="#">AR</a></li>

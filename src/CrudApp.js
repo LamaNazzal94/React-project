@@ -275,7 +275,7 @@ function Login() {
                       </div>
                       <div className="form-group">
                         <Form.Field>
-                          <label htmlFor="email">Email:</label>
+                          <label htmlFor="email"></label>
                           <input
                             type="email"
                             className="form-control"
@@ -292,7 +292,7 @@ function Login() {
                       </div>
                       <div className="form-group">
                         <Form.Field>
-                          <label htmlFor="password">Password:</label>
+                          <label htmlFor="password"></label>
                           <input
                             type="password"
                             className="form-control"

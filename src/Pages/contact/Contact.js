@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Import Link and Route
 import { Route } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 function Contact() {
+const { t, i18n } = useTranslation();
+
   return (
     <div>
       {/* Breadcrumb Section Begin */}
@@ -10,12 +14,12 @@ function Contact() {
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcrumb-text">
-                <h2>Contact Us</h2>
+                <h2>{t("contact")}</h2>
                 <div className="bt-option">
                   <Link to="/" className="primary-btn">
-                    Home
+                    {t("home")}
                   </Link>
-                  <span>Contact Us</span>
+                  <span>{t("contact")}</span>
                 </div>
               </div>
             </div>
@@ -28,29 +32,22 @@ function Contact() {
           <div className="row">
             <div className="col-lg-4">
               <div className="contact-text">
-                <h2>Contact Info</h2>
+                <h2>{t("contactinfo")}</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  
                 </p>
                 <table>
                   <tbody>
-                    <tr>
-                      <td className="c-o">Address:</td>
-                      <td>856 Cordia Extension Apt. 356, Lake, US</td>
-                    </tr>
+                    
                     <tr>
                       <td className="c-o">Phone:</td>
-                      <td>(12) 345 67890</td>
+                      <td>(+962) 787656330</td>
                     </tr>
                     <tr>
                       <td className="c-o">Email:</td>
-                      <td>info.colorlib@gmail.com</td>
+                      <td>qasem.zoubi2000@gmail.com</td>
                     </tr>
-                    <tr>
-                      <td className="c-o">Fax:</td>
-                      <td>+(12) 345 67890</td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </div>
