@@ -78,7 +78,7 @@ function RoomDetails() {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="breadcrumb-text">
-                    <h2>Our Rooms</h2>
+                    <h2>Our Rooms </h2>
                     <div className="bt-option">
                       <Link to="/">Home</Link> {/* Use Link for Home */}
                       <a>Rooms</a>

@@ -89,6 +89,22 @@ ul, ol {
   Helper CSS
 -----------------------*/
 
+/* .................sara css........................ */
+
+
+.btn-cust{
+	background-Color: #DFA974;
+    color: #fff;
+    border-Color: #DFA974;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 16px 28px 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px
+}
+/* ......................................... */
+
 .section-title {
 	text-align: center;
 	margin-bottom: 22px;
@@ -1859,7 +1875,7 @@ ul, ol {
 -----------------------*/
 
 .contact-section {
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 80px;
 }
 .contact-text h2 {

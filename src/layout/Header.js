@@ -134,13 +134,11 @@ function Header() {
                       <li className={currentPath === "/about" ? "active" : ""}>
                         <Link to="/about">About Us</Link>
                       </li>
-                      <li
-                        className={
-                          currentPath.startsWith("/pages") ? "active" : ""
-                        }
-                      >
-                        <Link to="/pages">Pages</Link>
-                        <ul className="dropdown">
+
+                      {/* <li
+                        className={currentPath.startsWith("/pages") ? "active" : ""}>
+                        <Link to="/pages">Pages</Link> */}
+                        {/* <ul className="dropdown">
                           <li
                             className={
                               currentPath === "/room-details" ? "active" : ""
@@ -148,9 +146,9 @@ function Header() {
                           >
                             <Link to="/room-details">Room Details</Link>
                           </li>
-                          {/* Add more dropdown items as needed */}
-                        </ul>
-                      </li>
+                        </ul> */}
+                      {/* </li> */}
+
                       <li
                         className={currentPath === "/contact" ? "active" : ""}
                       >
@@ -160,7 +158,7 @@ function Header() {
                         {check == null || check === "false" ? (
                           <>
                             <Link to="/CrudApp">
-                              <button className="btn-warning">LogIn</button>
+                              <button className="btn-cust">LogIn</button>
                             </Link>
                           </>
                         ) : (
@@ -169,7 +167,7 @@ function Header() {
                               <i className="fa fa-user"></i>
                             </Link>
                             <button
-                              className="btn-warning"
+                              className="btn-cust btn-sm"
                               onClick={handleLogout}
                             >
                               Logout
