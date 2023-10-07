@@ -68,6 +68,8 @@ function RoomDetails({ hotelid, roomId, onClose }) {
 }
 
 function Profile() {
+  const [availability, setavailability] = useState(true);
+
   const [user, setUser] = useState({});
   const [books, setBooks] = useState([]);
   const [hotels, setHotels] = useState([]);
@@ -115,14 +117,23 @@ console.log(typeof +localStorage.getItem("userid"));
       });
   }, []);
 
-  const deleteBook = (id) => {
+  const deleteBook = (id,roomid,hotelid) => {
     axios
       .delete(`https://651d606a44e393af2d59a7e0.mockapi.io/booking/${id}`)
       .then(() => {
         const updatedBooks = books.filter((book) => book.id !== id);
         setBooks(updatedBooks);
+        availabilityy(roomid, hotelid);
       })
       .catch((error) => console.error("Error deleting booking:", error));
+  };
+  const availabilityy = (hotelid,id) => {
+    axios.put(
+      `https://64bbac6a7b33a35a4446905c.mockapi.io/hotels/${hotelid}/rooms/${id}`,
+      {
+        availability,
+      }
+    );
   };
 
   return (
@@ -173,7 +184,11 @@ console.log(typeof +localStorage.getItem("userid"));
                     <tr key={book.id}>
                       {hotels.map((hotel) => {
                         if (book.hotelid === hotel.id) {
-                          return <td key={hotel.id}>{hotel.hotel_name}</td>;
+                          return (
+                            <td key={hotel.id} roomid={book.roomid}>
+                              {hotel.hotel_name}
+                            </td>
+                          );
                         }
                         return null; // Return null for non-matching hotels
                       })}
@@ -182,7 +197,9 @@ console.log(typeof +localStorage.getItem("userid"));
                       <td>
                         <button
                           className="btn btn-danger mbtn"
-                          onClick={() => deleteBook(book.id)}>
+                          onClick={() =>
+                            deleteBook(book.id, book.hotelid, book.roomid)
+                          }>
                           Delete
                         </button>
                       </td>

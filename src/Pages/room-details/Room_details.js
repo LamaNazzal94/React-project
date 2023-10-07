@@ -11,6 +11,7 @@ import Sweetalert from "../../sweetalert";
 
 // https://64c259d9eb7fd5d6ebcfae46.mockapi.io/user
 function RoomDetails() {
+  let usersss=""
   const [userid, setUserid] = useState(localStorage.getItem("userid"));
   const [islogin, setlogin] = useState(localStorage.getItem("islogin"));
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +19,7 @@ function RoomDetails() {
 
   const { id, hotelid } = useParams();
   const [roomid, setroomid] = useState(id);
+  const [userreviewid, setuserreviewid] = useState(0);
   const [roomdetils, setRoomdetils] = useState([]);
   const [book, setBook] = useState([]);
   const [user, setUser] = useState([]);
@@ -43,7 +45,7 @@ function RoomDetails() {
       .get("https://651d596844e393af2d599b52.mockapi.io/reviwe")
       .then((response) => {
         const filteredReview = response.data.filter(
-          (item) => item.single_id == id + 1
+          (item) => item.single_id == id 
         );
         console.log(filteredReview[0]);
         // JSON.stringify(item.single_id);
@@ -208,7 +210,7 @@ function RoomDetails() {
                           </div>
                         </div>
                       </div>
-                      <h2>
+                      <h2>  
                         {roomdetils.price}$<span>/Pernight</span>
                       </h2>
                       <table>
@@ -239,14 +241,14 @@ function RoomDetails() {
                   <div className="rd-reviews">
                     <h4>Reviews</h4>
                     {/* {JSON.stringify(review, null, 2)} */}
-                    {console.log(review)}
+                    {/* {console.log(review)} */}
                     {review.map((rev) => (
                       <div key={rev} className="review-item">
                         <div className="ri-pic">
                           <img src={`${rev.image}`} alt="" />
                         </div>
                         <div className="ri-text">
-                          <span>27 Aug 2019</span>
+                          <span>{rev.date} </span>
                           <div className="rating">
                             <i className="icon_star"></i>
                             <i className="icon_star"></i>
@@ -254,8 +256,11 @@ function RoomDetails() {
                             <i className="icon_star"></i>
                             <i className="icon_star-half_alt"></i>
                           </div>
-                          <h5>{user[rev.user_id].first_name}</h5>
-                          <p>{/* Add review text */}</p>
+                          {/* {console.log("ttt", user[8].first_name)} */}
+                          {(usersss = rev.user_id)}
+                          {/* {setuserreviewid(rev.user_id)} */}
+                          <h5>{user[usersss].first_name}</h5>
+                          <p>{rev.reviewText}</p>
                         </div>
                       </div>
                     ))}
