@@ -31,7 +31,9 @@
 
 /* Template default CSS
 /*----------------------------------------*/
-
+.w-80px{
+	width: 80px;	
+}
 html, body {
 	height: 100%;
 	font-family: "Cabin", sans-serif;
