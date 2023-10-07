@@ -320,3 +320,6 @@ font-family: 'Oswald', sans-serif;
     flex-direction: row;
     padding-top: 30px;
 }
+.hp-room-items .hp-room-item .hr-text {
+    bottom: -134px;
+}
