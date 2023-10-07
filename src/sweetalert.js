@@ -27,7 +27,7 @@ const MySweetAlertComponent = () => {
       .then((result) => {
         if (result.isConfirmed) {
           // window.location=("/")
-          navigate("/");
+          navigate("/CrudApp");
         } else if (result.dismiss === Swal.DismissReason.cancel) {
         }
       });

@@ -9,6 +9,7 @@ import  Blog from'./Blog';
 
 
 
+
 function Index_component() {
   return (
     <div>

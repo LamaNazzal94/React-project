@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom"; // Import Link for routing
 import axios from "axios";
 import Preloader from "./Preloader";
 
@@ -9,6 +9,9 @@ function Rooms() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6; // Number of items to display per page
+  const { Hotelid } = useParams();
+
+
 useEffect(() => {
   axios
     .get(`https://651d606a44e393af2d59a7e0.mockapi.io/booking`)
@@ -22,13 +25,14 @@ useEffect(() => {
   useEffect(() => {
     axios
       .get(
-        `https://64bbac6a7b33a35a4446905c.mockapi.io/hotels/1/rooms`
+        `https://64bbac6a7b33a35a4446905c.mockapi.io/hotels/${Hotelid}/rooms`
       )
+
       .then((response) => {
         setRooms(response.data);
         setIsLoading(false);
       });
-  }, []);
+  }, [Hotelid]);
 
   // Calculate the range of items to display for the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -57,6 +61,7 @@ useEffect(() => {
     <div>
       {isLoading ? (
         <Preloader />
+      
       ) : (
         <div>
           <div className="breadcrumb-section">

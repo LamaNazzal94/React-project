@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { useTranslation } from "react-i18next";
 function Header() {
+    const { t, i18n } = useTranslation();
   return (
     <div>
       {/* Page Preloder */}
-      <div id="preloder">
+      {/* <div id="preloder">
         <div className="loader"></div>
-      </div>
+      </div> */}
 
       {/* Offcanvas Menu Section Begin */}
       <div className="offcanvas-menu-overlay"></div>
@@ -27,12 +28,12 @@ function Header() {
             <span>EN <i className="fa fa-angle-down"></i></span>
             <div className="flag-dropdown">
               <ul>
-                <li><a href="#">Zi</a></li>
-                <li><a href="#">Fr</a></li>
+                <li><a href="#">AR</a></li>
+                <li><a href="#">EN</a></li>
               </ul>
             </div>
           </div>
-          <a href="#" className="bk-btn">Booking Now</a>
+          <a href="#" className="bk-btn"> {t('title')} </a>
         </div>
         <nav className="mainmenu mobile-menu">
           <ul>
@@ -85,13 +86,13 @@ function Header() {
                     <a href="#"><i className="fa fa-tripadvisor"></i></a>
                     <a href="#"><i className="fa fa-instagram"></i></a>
                   </div>
-                  <a href="#" className="bk-btn">Booking Now</a>
+                  <a href="#" className="bk-btn">{t('title')}</a>
                   <div className="language-option">
                     <img src="img/flag.jpg" alt="" />
                     <span>EN <i className="fa fa-angle-down"></i></span>
                     <div className="flag-dropdown">
                       <ul>
-                        <li><a href="#">Zi</a></li>
+                        <li><a href="#">Ar</a></li>
                         <li><a href="#">Fr</a></li>
                       </ul>
                     </div>
