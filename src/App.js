@@ -16,8 +16,8 @@ import RoomDetails from './Pages/room-details/Room_details'; // Update component
 import Rooms from './Pages/rooms/Rooms';
 import Index_component from './Pages/index/index_component';
 import CrudApp from './CrudApp';
-import UserRoomDetailes from './Pages/UserProfile/UserRoomDetailes';
 import Profile from './Pages/UserProfile/Profile';
+import FilterRoom from './Pages/filter/FilterRoom';
 import './login';
 import './login.css';
 
@@ -41,7 +41,9 @@ function App() {
             element={<RoomDetails />}
           />
           <Route path="rooms/:Hotelid" element={<Rooms />} />
-          <Route path="rooms" element={<Rooms />} />
+          <Route path="rooms" element={<FilterRoom />} />
+          <Route path="/Rooms" component={Rooms} /> {/* Add this route */}
+
           {/* //nav */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

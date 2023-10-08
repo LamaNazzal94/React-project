@@ -73,7 +73,10 @@ function Profile() {
   const [hotels, setHotels] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);
-  const userId = 1; // Change this back to your localStorage approach if needed
+  
+  const userId=+localStorage.getItem("userid");
+
+  // const userId = 1; // Change this back to your localStorage approach if needed
 
   useEffect(() => {
     // Fetch user data from the API when the component mounts
@@ -93,7 +96,7 @@ function Profile() {
       .get(`https://651d606a44e393af2d59a7e0.mockapi.io/booking`)
       .then((response) => {
         let userbook = response.data.filter(
-          (booking) => booking.userid === userId
+          (booking) => booking.user_aid === userId
         );
         setBooks(userbook);
         setLoaded(true);
@@ -208,15 +211,15 @@ function Profile() {
           )}
 
           {/* Right Column - Room Details */}
-          {selectedRoom && (
+          {/* {selectedRoom && (
             <div className="col-lg-4">
               <RoomDetails
-                hotelid={selectedRoom.hotelid}
-                roomId={selectedRoom.roomId}
+                hotelid={book.hotelid}
+                roomId={book.roomId}
                 onClose={() => setSelectedRoom(null)}
               />
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </section>
