@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link and Route
 import { Route } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
 
 function AboutUs() {
+    const { t, i18n } = useTranslation();
+
   return (
     <div>
       {/* Breadcrumb Section Begin */}
@@ -11,10 +15,12 @@ function AboutUs() {
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcrumb-text">
-                <h2>About Us</h2>
+                <h2>{t("about")}</h2>
                 <div className="bt-option">
-                  <Link to="/" className="primary-btn">Home</Link>
-                  <span>About Us</span>
+                  <Link to="/" className="primary-btn">
+                    {t("home")}
+                  </Link>
+                  <span>{t("about")}</span>
                 </div>
               </div>
             </div>
@@ -30,29 +36,26 @@ function AboutUs() {
             <div className="row">
               <div className="col-lg-6">
                 <div className="ap-title">
-                  <h2>Welcome To Sona.</h2>
-                  <p>
-                    Built in 1910 during the Belle Epoque period, this hotel is located in the center of Paris, with
-                    easy access to the city’s tourist attractions. It offers tastefully decorated rooms.
-                  </p>
+                  <h2>{t("welcome")}</h2>
+                  <p>{t("aboutpara")}</p>
                 </div>
               </div>
               <div className="col-lg-5 offset-lg-1">
                 <ul className="ap-services">
                   <li>
-                    <i className="icon_check"></i> 20% Off On Accommodation.
+                    <i className="icon_check"></i> {t("offer1")}
                   </li>
                   <li>
-                    <i className="icon_check"></i> Complimentary Daily Breakfast
+                    <i className="icon_check"></i> {t("offer2")}
                   </li>
                   <li>
-                    <i className="icon_check"></i> 3 Pcs Laundry Per Day
+                    <i className="icon_check"></i> {t("offer3")}
                   </li>
                   <li>
-                    <i className="icon_check"></i> Free Wifi.
+                    <i className="icon_check"></i> {t("offer4")}
                   </li>
                   <li>
-                    <i className="icon_check"></i> Discount 20% On F&B
+                    <i className="icon_check"></i> {t("offer5")}
                   </li>
                 </ul>
               </div>
@@ -61,23 +64,38 @@ function AboutUs() {
           <div className="about-page-services">
             <div className="row">
               <div className="col-md-4">
-                <div className="ap-service-item set-bg" style={{ backgroundImage: 'url(asset/img/about/about-p1.jpg)' }}>
+                <div
+                  className="ap-service-item set-bg"
+                  style={{
+                    backgroundImage: "url(asset/img/about/about-p1.jpg)",
+                  }}
+                >
                   <div className="api-text">
-                    <h3>Restaurants Services</h3>
+                    <h3>{t("aboutcate1")}</h3>
                   </div>
                 </div>
               </div>
               <div className="col-md-4">
-                <div className="ap-service-item set-bg" style={{ backgroundImage: 'url(asset/img/about/about-p2.jpg)' }}>
+                <div
+                  className="ap-service-item set-bg"
+                  style={{
+                    backgroundImage: "url(asset/img/about/about-p2.jpg)",
+                  }}
+                >
                   <div className="api-text">
-                    <h3>Travel & Camping</h3>
+                    <h3>{t("aboutcate2")}</h3>
                   </div>
                 </div>
               </div>
               <div className="col-md-4">
-                <div className="ap-service-item set-bg" style={{ backgroundImage: 'url(asset/img/about/about-p3.jpg)' }}>
+                <div
+                  className="ap-service-item set-bg"
+                  style={{
+                    backgroundImage: "url(asset/img/about/about-p3.jpg)",
+                  }}
+                >
                   <div className="api-text">
-                    <h3>Event & Party</h3>
+                    <h3>{t("aboutcate3")}</h3>
                   </div>
                 </div>
               </div>
@@ -93,28 +111,43 @@ function AboutUs() {
           <div className="row">
             <div className="col-lg-12">
               <div className="section-title">
-                <span>Our Gallery</span>
-                <h2>Discover Our Work</h2>
+                <span>{t("gallery")}</span>
+                <h2>{t("descover")}</h2>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-6">
-              <div className="gallery-item set-bg" style={{ backgroundImage: 'url(asset/img/gallery/gallery-1.jpg)' }}>
+              <div
+                className="gallery-item set-bg"
+                style={{
+                  backgroundImage: "url(asset/img/gallery/gallery-1.jpg)",
+                }}
+              >
                 <div className="gi-text">
                   <h3>Room Luxury</h3>
                 </div>
               </div>
               <div className="row">
                 <div className="col-sm-6">
-                  <div className="gallery-item set-bg" style={{ backgroundImage: 'url(asset/img/gallery/gallery-3.jpg)' }}>
+                  <div
+                    className="gallery-item set-bg"
+                    style={{
+                      backgroundImage: "url(asset/img/gallery/gallery-3.jpg)",
+                    }}
+                  >
                     <div className="gi-text">
                       <h3>Room Luxury</h3>
                     </div>
                   </div>
                 </div>
                 <div className="col-sm-6">
-                  <div className="gallery-item set-bg" style={{ backgroundImage: 'url(asset/img/gallery/gallery-4.jpg)' }}>
+                  <div
+                    className="gallery-item set-bg"
+                    style={{
+                      backgroundImage: "url(asset/img/gallery/gallery-4.jpg)",
+                    }}
+                  >
                     <div className="gi-text">
                       <h3>Room Luxury</h3>
                     </div>
@@ -123,7 +156,12 @@ function AboutUs() {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="gallery-item large-item set-bg" style={{ backgroundImage: 'url(asset/img/gallery/gallery-2.jpg)' }}>
+              <div
+                className="gallery-item large-item set-bg"
+                style={{
+                  backgroundImage: "url(asset/img/gallery/gallery-2.jpg)",
+                }}
+              >
                 <div className="gi-text">
                   <h3>Room Luxury</h3>
                 </div>

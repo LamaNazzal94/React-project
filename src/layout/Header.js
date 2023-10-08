@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Header() {
+    const { t, i18n } = useTranslation();
+
   const [check, setCheck] = useState(localStorage.getItem("islogin"));
   const location = useLocation();
   const currentPath = location.pathname;
@@ -15,9 +18,9 @@ function Header() {
   return (
     <div>
       {/* Page Preloder */}
-      <div id="preloder">
+      {/* <div id="preloder">
         <div className="loader"></div>
-      </div>
+      </div> */}
 
       {/* Offcanvas Menu Section Begin */}
       <div className="offcanvas-menu-overlay"></div>
@@ -40,16 +43,26 @@ function Header() {
             <div className="flag-dropdown">
               <ul>
                 <li>
-                  <a href="#">Zi</a>
+                  <a
+                    onClick={() => {
+                      i18n.changeLanguage("ar");
+                    }}>
+                    Zi
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Fr</a>
+                  <a
+                    onClick={() => {
+                      i18n.changeLanguage("en");
+                    }}>
+                    Fr
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
           <a href="#" className="bk-btn">
-            Booking Now
+            {t("title")}
           </a>
         </div>
       </div>
@@ -87,7 +100,7 @@ function Header() {
                     </a>
                   </div>
                   <a href="#" className="bk-btn">
-                    Booking Now
+                    {t("title")}
                   </a>
                   <div className="language-option">
                     <img src="asset/img/flag.jpg" alt="" />
@@ -96,12 +109,32 @@ function Header() {
                     </span>
                     <div className="flag-dropdown">
                       <ul>
-                        <li>
-                          <a href="#">Zi</a>
-                        </li>
-                        <li>
-                          <a href="#">Fr</a>
-                        </li>
+                        {i18n.language == "en" && (
+                          <li
+                            onClick={() => {
+                              i18n.changeLanguage("ar");
+                            }}>
+                            <a
+                              onClick={() => {
+                                i18n.changeLanguage("ar");
+                              }}>
+                              AR
+                            </a>
+                          </li>
+                        )}
+                        {i18n.language == "ar" && (
+                          <li
+                            onClick={() => {
+                              i18n.changeLanguage("en");
+                            }}>
+                            <a
+                              onClick={() => {
+                                i18n.changeLanguage("en");
+                              }}>
+                              EN
+                            </a>
+                          </li>
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -126,13 +159,13 @@ function Header() {
                   <nav className="mainmenu">
                     <ul>
                       <li className={currentPath === "/" ? "active" : ""}>
-                        <Link to="/">Home</Link>
+                        <Link to="/">{t("home")}</Link>
                       </li>
                       <li className={currentPath === "/rooms" ? "active" : ""}>
                         <Link to="/rooms">Rooms</Link>
                       </li>
                       <li className={currentPath === "/about" ? "active" : ""}>
-                        <Link to="/about">About Us</Link>
+                        <Link to="/about">{t("about")}</Link>
                       </li>
 
                       {/* <li
@@ -142,23 +175,23 @@ function Header() {
                           <li
                             className={
                               currentPath === "/room-details" ? "active" : ""
-                            }
-                          >
+                            }>
                             <Link to="/room-details">Room Details</Link>
                           </li>
                         </ul> */}
                       {/* </li> */}
 
                       <li
-                        className={currentPath === "/contact" ? "active" : ""}
-                      >
-                        <Link to="/contact">Contact</Link>
+                        className={currentPath === "/contact" ? "active" : ""}>
+                        <Link to="/contact">{t("contact")}</Link>
                       </li>
                       <li>
                         {check == null || check === "false" ? (
                           <>
                             <Link to="/CrudApp">
-                              <button className="btn-cust">LogIn</button>
+                              <button className="btn-cust">
+                                {t("login")}
+                              </button>
                             </Link>
                           </>
                         ) : (
@@ -168,9 +201,8 @@ function Header() {
                             </Link>
                             <button
                               className="btn-cust btn-sm"
-                              onClick={handleLogout}
-                            >
-                              Logout
+                              onClick={handleLogout}>
+                              {t("logout")}
                             </button>
                           </>
                         )}

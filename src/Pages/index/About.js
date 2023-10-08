@@ -1,6 +1,10 @@
 import React from 'react';
+import { useTranslation } from "react-i18next";
+
 
 function About() {
+    const { t, i18n } = useTranslation();
+
   return (
     <section className="aboutus-section spad">
       <div className="container">
@@ -8,14 +12,12 @@ function About() {
           <div className="col-lg-6">
             <div className="about-text">
               <div className="section-title">
-                <span>About Us</span>
-                <h2>Intercontinental LA <br />Westlake Hotel</h2>
+                <span>{t("about")} </span>
+                <h2>{t("sonatitle")}</h2>
               </div>
-              <p className="f-para">Sona.com is a leading online accommodation site. We’re passionate about
-                travel. Every day, we inspire and reach millions of travelers across 90 local websites in 41
-                languages.</p>
-              <p className="s-para">So when it comes to booking the perfect hotel, vacation rental, resort,
-                apartment, guest house, or tree house, we’ve got you covered.</p>
+              <p className="f-para">{t("sona")}</p>
+              {/* <p className="s-para">So when it comes to booking the perfect hotel, vacation rental, resort,
+                apartment, guest house, or tree house, we’ve got you covered.</p> */}
               {/* <a href="/read-more-link" className="primary-btn about-btn">Read More</a> */}
             </div>
           </div>
