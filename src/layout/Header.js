@@ -61,9 +61,11 @@ function Header() {
               </ul>
             </div>
           </div>
-          <a href="#" className="bk-btn">
+          {/* <a href="#" className="bk-btn"> */}
+          <Link to="/rooms" className="bk-btn">
             {t("title")}
-          </a>
+          </Link>
+          {/* </a> */}
         </div>
       </div>
       {/* Offcanvas Menu Section End */}
@@ -76,10 +78,10 @@ function Header() {
               <div className="col-lg-6">
                 <ul className="tn-left">
                   <li>
-                    <i className="fa fa-phone"></i> (12) 345 67890
+                    <i className="fa fa-phone"></i> (07) 985 40 904
                   </li>
                   <li>
-                    <i className="fa fa-envelope"></i> info.colorlib@gmail.com
+                    <i className="fa fa-envelope"></i> Sona@gmail.com
                   </li>
                 </ul>
               </div>
@@ -99,11 +101,11 @@ function Header() {
                       <i className="fa fa-instagram"></i>
                     </a>
                   </div>
-                  <a href="#" className="bk-btn">
+                  <Link to="/rooms" className="bk-btn">
                     {t("title")}
-                  </a>
+                  </Link>
                   <div className="language-option">
-                    <img src="asset/img/flag.jpg" alt="" />
+                    {/* <img src="asset/img/flag.jpg" alt="" /> */}
                     <span>
                       EN <i className="fa fa-angle-down"></i>
                     </span>
@@ -118,6 +120,7 @@ function Header() {
                               onClick={() => {
                                 i18n.changeLanguage("ar");
                               }}>
+                              <img src="https://s3.eu-west-2.amazonaws.com/qmasters/flags/png/jordan/flag-round-250.png"></img>{" "}
                               AR
                             </a>
                           </li>
@@ -162,24 +165,11 @@ function Header() {
                         <Link to="/">{t("home")}</Link>
                       </li>
                       <li className={currentPath === "/rooms" ? "active" : ""}>
-                        <Link to="/rooms">Rooms</Link>
+                        <Link to="/rooms">{t("rooms")} </Link>
                       </li>
                       <li className={currentPath === "/about" ? "active" : ""}>
                         <Link to="/about">{t("about")}</Link>
                       </li>
-
-                      {/* <li
-                        className={currentPath.startsWith("/pages") ? "active" : ""}>
-                        <Link to="/pages">Pages</Link> */}
-                        {/* <ul className="dropdown">
-                          <li
-                            className={
-                              currentPath === "/room-details" ? "active" : ""
-                            }>
-                            <Link to="/room-details">Room Details</Link>
-                          </li>
-                        </ul> */}
-                      {/* </li> */}
 
                       <li
                         className={currentPath === "/contact" ? "active" : ""}>
@@ -189,9 +179,7 @@ function Header() {
                         {check == null || check === "false" ? (
                           <>
                             <Link to="/CrudApp">
-                              <button className="btn-cust">
-                                {t("login")}
-                              </button>
+                              <button className="btn-cust">{t("login")}</button>
                             </Link>
                           </>
                         ) : (

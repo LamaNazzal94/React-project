@@ -80,8 +80,11 @@ function Profile() {
   const [editUser, setEditUser]=useState({});//----------------for update user------------------------
   const [users, setUsers] = useState({});//----------------for update user------------------------
   const [selectedRoom, setSelectedRoom] = useState(null);
-  const userId = +localStorage.getItem("userid"); // Change this back to your localStorage approach if needed
-  console.log(typeof +localStorage.getItem("userid"));
+  
+  const userId=+localStorage.getItem("userid");
+
+  // const userId = 1; // Change this back to your localStorage approach if needed
+
   useEffect(() => {
     // Fetch user data from the API when the component mounts
     axios
@@ -184,120 +187,124 @@ function Profile() {
         {/* User Info Row */}
         <div className="row">
           <div className="col-lg-3">
-            <div className="image_div" >
-              <img className="profile_image"
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYRAWqd6TQyF2T7q3XretY6PCSDQVBnPhYg&usqp=CAU' />
+            <div className="image_div">
+              <img
+                className="profile_image"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYRAWqd6TQyF2T7q3XretY6PCSDQVBnPhYg&usqp=CAU"
+              />
             </div>
 
             <div className="contact-text">
-            <div className="contact-text" style={{ paddingTop: '50px' }}>
-              <h3>
-                {user.first_name} {user.last_name}
-              </h3>
-              <p>Email: {user.email}</p>
-              <p>Phone: {user.phone}</p>
-            </div>
+              <div className="contact-text" style={{ paddingTop: "50px" }}>
+                <h3>
+                  {user.first_name} {user.last_name}
+                </h3>
+                <p>Email: {user.email}</p>
+                <p>Phone: {user.phone}</p>
+              </div>
             </div>
           </div>
-          
-          <div class="col-lg-7 offset-lg-1">
-                    <Form action="#" class="contact-form">
-                        <div class="row">
-                            <div class="col-lg-6">
-                            <FormField>
-                                <input type="text" className="input_Form"
-                                placeholder="First Name"
-                                 value={editUser.first_name}
-                                 defaultValue={editUser.first_name}
-                                 onChange={(e) =>
-                                  setEditUser({
-                                    ...editUser,
-                                    first_name: e.target.value,
-                                  })
-                                }
-                                 
-                                 />
-                                </FormField>
-                            </div>
-                            <div class="col-lg-6">
-                            <FormField>
-                                <input type="text" 
-                                 className="input_Form"
-                                placeholder="Last Name" 
-                                value={editUser.last_name}
-                                defaultValue={editUser.last_name}
-                                onChange={(e) =>
-                                  setEditUser({
-                                    ...editUser,
-                                    last_name: e.target.value,
-                                  })
-                                }
-                                
-                                />
-                                </FormField>
-                            </div>
-                            <div class="col-lg-12">
-                            <FormField>
-                                <input type="number" 
-                                 className="input_Form"
-                                placeholder="Phone Number"
-                                 value={editUser.phone}
-                                 defaultValue={editUser.phone}
-                                 onChange={(e) =>
-                                  setEditUser({
-                                    ...editUser,
-                                    phone: e.target.value,
-                                  })
-                                }
-                                
-                                />
-                                </FormField>
-                            </div>
-                            <div class="col-lg-12">
-                            <FormField>
-                                <input type="email" 
-                                 className="input_Form"
-                                placeholder={user.email}
-                                 value={editUser.email}
-                                 defaultValue={editUser.email}
-                                 onChange={(e) =>
-                                  setEditUser({
-                                    ...editUser,
-                                    email: e.target.value,
-                                  })
-                                }
-                                 
-                                 />
-                                 </FormField>
-                            </div>
-                            
-                            <div class="col-lg-12">
-                            <FormField>
-                                <input type="password"
-                                 className="input_Form" 
-                                placeholder="Your password" 
-                                value={editUser.password}
-                                defaultValue={editUser.password}
-                                onChange={(e) =>
-                                  setEditUser({
-                                    ...editUser,
-                                    password: e.target.value,
-                                  })
-                                }
-                               
-                               />
-                               </FormField>
-                            </div>
-                            <div class="col-lg-12">
-                                
-                                <button className="button_form" type="submit" onClick={updateUser}>Update Now</button>
-                            </div>
-                        </div>
-                    </Form>
-                </div>
-          
 
-          
+          <div class="col-lg-7 offset-lg-1">
+            <Form action="#" class="contact-form">
+              <div class="row">
+                <div class="col-lg-6">
+                  <FormField>
+                    <input
+                      type="text"
+                      className="input_Form"
+                      placeholder="First Name"
+                      value={editUser.first_name}
+                      defaultValue={editUser.first_name}
+                      onChange={(e) =>
+                        setEditUser({
+                          ...editUser,
+                          first_name: e.target.value,
+                        })
+                      }
+                    />
+                  </FormField>
+                </div>
+                <div class="col-lg-6">
+                  <FormField>
+                    <input
+                      type="text"
+                      className="input_Form"
+                      placeholder="Last Name"
+                      value={editUser.last_name}
+                      defaultValue={editUser.last_name}
+                      onChange={(e) =>
+                        setEditUser({
+                          ...editUser,
+                          last_name: e.target.value,
+                        })
+                      }
+                    />
+                  </FormField>
+                </div>
+                <div class="col-lg-12">
+                  <FormField>
+                    <input
+                      type="number"
+                      className="input_Form"
+                      placeholder="Phone Number"
+                      value={editUser.phone}
+                      defaultValue={editUser.phone}
+                      onChange={(e) =>
+                        setEditUser({
+                          ...editUser,
+                          phone: e.target.value,
+                        })
+                      }
+                    />
+                  </FormField>
+                </div>
+                <div class="col-lg-12">
+                  <FormField>
+                    <input
+                      type="email"
+                      className="input_Form"
+                      placeholder={user.email}
+                      value={editUser.email}
+                      defaultValue={editUser.email}
+                      onChange={(e) =>
+                        setEditUser({
+                          ...editUser,
+                          email: e.target.value,
+                        })
+                      }
+                    />
+                  </FormField>
+                </div>
+
+                <div class="col-lg-12">
+                  <FormField>
+                    <input
+                      type="password"
+                      className="input_Form"
+                      placeholder="Your password"
+                      value={editUser.password}
+                      defaultValue={editUser.password}
+                      onChange={(e) =>
+                        setEditUser({
+                          ...editUser,
+                          password: e.target.value,
+                        })
+                      }
+                    />
+                  </FormField>
+                </div>
+                <div class="col-lg-12">
+                  <button
+                    className="button_form"
+                    type="submit"
+                    onClick={updateUser}>
+                    Update Now
+                  </button>
+                </div>
+              </div>
+            </Form>
+          </div>
         </div>
         <br></br>
 
@@ -305,7 +312,7 @@ function Profile() {
         <div className="row">
           {/* Left Column - Booking Table */}
           {loaded && (
-            <div className="col-lg-8"  style={{ marginTop: '60px' }}>
+            <div className="col-lg-8" style={{ marginTop: "60px" }}>
               <table className="table table-striped">
                 <thead>
                   <tr>

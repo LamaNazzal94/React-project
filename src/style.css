@@ -94,16 +94,31 @@ ul, ol {
 /* .................sara css........................ */
 
 
+.btn-booking{
+	display: block;
+	font-size: 14px;
+	text-transform: uppercase;
+	border: 1px solid #dfa974;
+	border-radius: 2px;
+	color: #dfa974;
+	font-weight: 500;
+	background: transparent;
+	width: 100%;
+	height: 46px;
+	/* margin-top: 30px; */
+}
+
+
 .btn-cust{
-	background-Color: #DFA974;
-    color: #fff;
-    border-Color: #DFA974;
     display: inline-block;
     font-size: 13px;
     font-weight: 700;
     padding: 16px 28px 15px;
+    background: #dfa974;
+    color: #ffffff;
     text-transform: uppercase;
-    letter-spacing: 2px
+	border: 1px solid #dfa974;
+    letter-spacing: 2px;
 }
 
 .btn-booking{
@@ -553,7 +568,6 @@ ul, ol {
 }
 .booking-form {
 	background: #ffffff;
-	padding: 44px 40px 50px 40px;
 	border-radius: 4px;
 }
 .booking-form h3 {

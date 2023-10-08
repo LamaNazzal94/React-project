@@ -36,7 +36,33 @@ function RoomDetails() {
   const single_id = +id;
   const date = currentDate;
   const user_id = +localStorage.getItem("userid");
+const [nights, setNights] = useState(
+  (checkOut - checkIn) / (1000 * 60 * 60 * 24)
+);
+const [amount, setAmount] = useState(nights * roomdetils.price);
+// Calculate the number of nights and amount when check-in or check-out dates change
+const calculateNightsAndAmount = () => {
+  if (checkIn && checkOut) {
+    const millisecondsPerDay = 1000 * 60 * 60 * 24;
+    const nights = Math.ceil(
+      (new Date(checkOut) - new Date(checkIn)) / millisecondsPerDay
+    ); // Calculate nights
 
+    // Calculate amount based on the number of nights and room price
+    const amount = nights * roomdetils.price; // Replace 'roomdetils.price' with your actual room price
+
+    return { nights, amount };
+  } else {
+    return { nights: 0, amount: 0 }; // Default values when dates are not selected
+  }
+};
+
+// Update the nights and amount whenever checkIn or checkOut dates change
+useEffect(() => {
+  const { nights, amount } = calculateNightsAndAmount();
+  setNights(nights);
+  setAmount(amount);
+}, [checkIn, checkOut]);
   useEffect(() => {
     setlogin(localStorage.getItem("islogin"));
   });
@@ -118,7 +144,7 @@ function RoomDetails() {
 
       Toast.fire({
         icon: "success",
-        title: "Signed in successfully",
+        title: "Booking in successfully",
       });
     }
   };
@@ -210,7 +236,7 @@ function RoomDetails() {
                           </div>
                         </div>
                       </div>
-                      <h2>  
+                      <h2>
                         {roomdetils.price}$<span>/Pernight</span>
                       </h2>
                       <table>
@@ -257,13 +283,15 @@ function RoomDetails() {
                             <i className="icon_star-half_alt"></i>
                           </div>
                           {/* {console.log("ttt", user[8].first_name)} */}
-                          {(usersss = rev.user_id)}
+                          {/* {(usersss = rev.user_id)} */}
                           {/* {setuserreviewid(rev.user_id)} */}
-                          <h5>{user[usersss].first_name}</h5>
+                          {/* <h5>{user[usersss].first_name}</h5> */}
+                          <h5>{rev.reviewerName} </h5>
                           <p>{rev.reviewText}</p>
                         </div>
                       </div>
                     ))}
+               
                   </div>
                   {console.log(islogin)}
                   {islogin != "true" ? (
@@ -362,10 +390,10 @@ function RoomDetails() {
                             onChange={(e) => {
                               setcheckOut(e.target.value);
                             }}
-                            min={currentDate + checkOut}
+                            min={currentDate }
                           />
                           {/* <StripeContainer /> */}
-                          <i className="icon_calendar"></i>
+                          {/* <i className="icon_calendar"></i> */}
                         </div>
                       </Form.Field>
                       <Form.Field>
@@ -380,6 +408,12 @@ function RoomDetails() {
 
                           <p value="">1 Room</p>
                         </div>
+                        {Math.round(amount) > 0 && (
+                          <div className="select-option">
+                            <label htmlFor="room">Amount:</label>
+                            <p value="">{Math.round(amount)}</p>
+                          </div>
+                        )}
                       </Form.Field>
                       {islogin == "true" ? (
                         <Button type="submit" onClick={booking}>
@@ -397,7 +431,6 @@ function RoomDetails() {
             </div>
           </section>
 
-
           <section className="services-section">
             <div className="container">
               <div className="row">
@@ -411,42 +444,66 @@ function RoomDetails() {
               <div className="row">
                 <div className="col-lg-4 col-sm-6">
                   <div className="service-item">
-                    <img src="https://cdn-icons-png.flaticon.com/128/2946/2946876.png" className="w-80px" alt="" />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/2946/2946876.png"
+                      className="w-80px"
+                      alt=""
+                    />
                     <h4>Entertainment</h4>
                     <p>{roomdetils.entertainment}</p>
                   </div>
                 </div>
                 <div className="col-lg-4 col-sm-6">
                   <div className="service-item">
-                    <img src="https://cdn-icons-png.flaticon.com/128/1668/1668914.png" className="w-80px" alt="" />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/1668/1668914.png"
+                      className="w-80px"
+                      alt=""
+                    />
                     <h4>Bedding & Linens</h4>
                     <p>{roomdetils.Bedding_and_Linens}</p>
                   </div>
                 </div>
                 <div className="col-lg-4 col-sm-6">
                   <div className="service-item">
-                    <img src="https://cdn-icons-png.flaticon.com/128/3951/3951087.png" className="w-80px" alt="" />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/3951/3951087.png"
+                      className="w-80px"
+                      alt=""
+                    />
                     <h4>Housekeeping Services</h4>
                     <p>{roomdetils.Housekeeping_Services}</p>
                   </div>
                 </div>
                 <div className="col-lg-4 col-sm-6">
                   <div className="service-item">
-                    <img src="https://cdn-icons-png.flaticon.com/128/857/857681.png" className="w-80px" alt="" />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/857/857681.png"
+                      className="w-80px"
+                      alt=""
+                    />
                     <h4>Food & Cuisine</h4>
                     <p>{roomdetils.Food_and_Cuisine}</p>
                   </div>
                 </div>
                 <div className="col-lg-4 col-sm-6">
                   <div className="service-item">
-                    <img src="https://cdn-icons-png.flaticon.com/128/2684/2684197.png" className="w-80px" alt="" />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/2684/2684197.png"
+                      className="w-80px"
+                      alt=""
+                    />
                     <h4>Hire Driver</h4>
                     <p>{roomdetils.Hire_Driver}</p>
                   </div>
                 </div>
                 <div className="col-lg-4 col-sm-6">
                   <div className="service-item">
-                    <img src="https://cdn-icons-png.flaticon.com/128/2738/2738890.png" className="w-80px" alt="" />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/2738/2738890.png"
+                      className="w-80px"
+                      alt=""
+                    />
                     <h4>Juice & Drink</h4>
                     <p>{roomdetils.Juice_and_Drink}</p>
                   </div>
@@ -454,7 +511,6 @@ function RoomDetails() {
               </div>
             </div>
           </section>
-
 
           {/* Room Details Section End */}
         </div>

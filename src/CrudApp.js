@@ -162,7 +162,7 @@ function Login() {
 
           // Set the flag to indicate that the user is logged in
           isUserLoggedIn = true;
-          navigate(-1);
+         window.history.back();
         } else {
           setEmail("");
           setPassword("");
